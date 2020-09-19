@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -33,5 +34,21 @@ public class EventoController {
         //redicionando para salvar no banco
         return "redirect:/registarevento";
     }
-    
+     
+    //este metodo vai retornar a lista de eventos
+    @RequestMapping("/eventos")
+    public ModelAndView listaEventos(){
+        //renderizar eventos
+        ModelAndView mv = new ModelAndView("index");
+        
+        //fazendo uma busca no banco de dados
+        //usaremos Iterable porque sera uma lista
+        
+        Iterable<Evento> eventos = er.findAll();
+        
+        //passar a lista de eventos na view
+        mv.addObject("eventos", eventos);
+        
+        return mv;
+    }
 }

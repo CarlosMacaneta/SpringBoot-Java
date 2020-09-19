@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-        <title>Inicio</title>
+        <title>Eventos App</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <h1>Hello Spring Boot!</h1>
+        <h1>Lista de eventos</h1>
+        <h3><a href="/registarevento">Registar Eventos</a></h3>
+        
+        <!--para cada evento ele vai pegar do objecto que sera indicado-->
+        <div th:each="evento: ${eventos}">
+            <div class="row">
+                <!--acessaremos o objecto atravez de um span-->
+                <p>
+                    <span th:text="${evento.nome}"> </span>
+                </p>
+                <p>
+                    <span th:text="${evento.local}"> </span>
+                </p>
+                <p>
+                    <span th:text="${evento.data}"> </span>
+                </p>
+                <p>
+                    <span th:text="${evento.hora}"> </span>
+                </p>
+            </div>                 
+        </div>
     </body>
 </html>
